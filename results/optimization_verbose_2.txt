@@ -1,0 +1,92 @@
+-0.030 (+/-0.004) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 0.1}
+-0.026 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 0.1}
+-0.025 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 0.1}
+-0.026 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 0.1}
+-0.027 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 1}
+-0.026 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 1}
+-0.025 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 1}
+-0.025 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 1}
+-0.034 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 10}
+-0.031 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 10}
+-0.031 (+/-0.004) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 10}
+-0.031 (+/-0.004) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 10, 'reg__alpha': 10}
+-0.023 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 0.1}
+-0.025 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 0.1}
+-0.027 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 0.1}
+-0.029 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 0.1}
+-0.032 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 1}
+-0.032 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 1}
+-0.029 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 1}
+-0.029 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 1}
+-0.045 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__gamma': 0.01, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 10}
+-0.034 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 10}
+-0.033 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 0.0001, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 10}
+-0.033 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__gamma': 1e-05, 'reg__kernel': 'rbf', 'dim_reduce__n_components': 15, 'reg__alpha': 10}
+-0.067 (+/-0.005) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 10, 'reg__degree': 2}
+-0.084 (+/-0.003) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 10, 'reg__degree': 3}
+-0.083 (+/-0.006) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 10, 'reg__degree': 4}
+-0.034 (+/-0.004) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 10, 'reg__degree': 2}
+-0.033 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 10, 'reg__degree': 3}
+-0.035 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 10, 'reg__degree': 4}
+-0.065 (+/-0.004) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 15, 'reg__degree': 2}
+-0.100 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 15, 'reg__degree': 3}
+-0.081 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 0, 'dim_reduce__n_components': 15, 'reg__degree': 4}
+-0.027 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 15, 'reg__degree': 2}
+-0.032 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 15, 'reg__degree': 3}
+-0.035 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'poly', 'reg__coef0': 1, 'dim_reduce__n_components': 15, 'reg__degree': 4}
+-0.103 (+/-0.001) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.094 (+/-0.001) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.028 (+/-0.001) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.025 (+/-0.002) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.026 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.027 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.094 (+/-0.001) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.025 (+/-0.002) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.024 (+/-0.002) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.024 (+/-0.002) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.025 (+/-0.002) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.098 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 10, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.105 (+/-0.001) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.001) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.004) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.023 (+/-0.003) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.025 (+/-0.000) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.029 (+/-0.001) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.030 (+/-0.002) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 0.1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.100 (+/-0.000) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.003) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.004) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.101 (+/-0.004) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.027 (+/-0.002) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.028 (+/-0.002) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.029 (+/-0.002) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.029 (+/-0.002) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 1, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.096 (+/-0.004) for {'reg__gamma': 0.01, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.095 (+/-0.004) for {'reg__gamma': 0.001, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.095 (+/-0.004) for {'reg__gamma': 0.0001, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.095 (+/-0.004) for {'reg__gamma': 1e-05, 'reg__coef0': 0, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.01, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.001, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 0.0001, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.035 (+/-0.003) for {'reg__gamma': 1e-05, 'reg__coef0': 1, 'reg__alpha': 10, 'dim_reduce__n_components': 15, 'dim_reduce__whiten': True, 'reg__kernel': 'sigmoid'}
+-0.102 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 10, 'reg__alpha': 0.1}
+-0.103 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 10, 'reg__alpha': 1}
+-0.101 (+/-0.000) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 10, 'reg__alpha': 10}
+-0.103 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 15, 'reg__alpha': 0.1}
+-0.104 (+/-0.002) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 15, 'reg__alpha': 1}
+-0.104 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__kernel': 'linear', 'dim_reduce__n_components': 15, 'reg__alpha': 10}
+-0.043 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__layer_struct': [41, 29, 20, 22, 18, 20, 20], 'dim_reduce__n_components': 10}
+-0.042 (+/-0.001) for {'dim_reduce__whiten': True, 'reg__layer_struct': [41, 29, 20, 22, 18, 20, 20], 'dim_reduce__n_components': 15}
