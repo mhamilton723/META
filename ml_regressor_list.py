@@ -58,10 +58,11 @@ NN_params_2 = [
 
 reg_list = [
 	my.KernelRidge(),
-	my.NueralNet()]
+	my.SVR(),
+	my.RandomForestRegressor()]
 	
-param_space_list=[KR_params,NN_params_2]
-names_list=['KR','NN']
+param_space_list=[KR_params,SV_params,RF_params]
+names_list=['KR','SV','RF']
 
 #reg_list=[
 #	my.KernelRidge(),

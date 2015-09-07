@@ -1,7 +1,7 @@
 ####### DATASET PARAMETERS
-subsample=100
+subsample=400
 #data_file="data/S82A_sdss_galex_ukidss_wise_AB_ext.txt"
-data_file="data/sdssfix_galex_ukidss_wise_aper_AB_ext.csv"
+data_file="raw_data/sdssfix_galex_ukidss_wise_aper_AB_ext.csv"
 #data_file="data/S82A_zphot_sdss_galex_ukidss_wise_AB_ext.txt"
 
 ####### FEATURE PARAMETERS
@@ -10,19 +10,20 @@ response_var='z_spec'
 parametric_col='None'
 
 ####### FILE PARAMETERS
-opt_verbose_file='results/optimization_verbose_2.txt'
-opt_best_file="results/optimization_best_2.txt"
+test_size = .3
+split_data_file='data/split_data.pkl'
 
-opt_pickle_file="results/optimization_verbose_2.pkl"
-ensemble_pickle_file='results/ensemble_results_2.pkl'
 
-nonopt_res_file='results/non_opt_results.pdf'
+opt_verbose_file='results/opt_verbose.txt'
+opt_best_file="results/opt_best.txt"
+opt_pickle_file="results/opt_verbose.pkl"
+ensemble_pickle_file='results/ens_results.pkl'
+
+nonopt_res_file='results/nonopt_results.pdf'
 opt_ensemble_res_file='results/opt_ensemble_results.png'
 
 ####### GRID SEARCH PARAMETERS
-test_size=.2
-cv_opt=2
-cv_plot=1
+cv_folds=5
 
 ####### BAGGING PARAMETERS
 n_estimators = 3

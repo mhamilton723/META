@@ -1,6 +1,0 @@
-Pipeline(steps=[('inputer', Imputer(axis=0, copy=True, missing_values=-99, strategy='mean', verbose=0)), ('scaler', StandardScaler(copy=True, with_mean=True, with_std=True)), ('dim_reduce', PCA(copy=True, n_components=15, whiten=True)), ('reg', KernelRidge(alpha=0.1, coef0=1, degree=3, gamma=0.01, kernel='sigmoid',
-      kernel_params=None))])
-
-Pipeline(steps=[('inputer', Imputer(axis=0, copy=True, missing_values=-99, strategy='mean', verbose=0)), ('scaler', StandardScaler(copy=True, with_mean=True, with_std=True)), ('dim_reduce', PCA(copy=True, n_components=15, whiten=True)), ('reg', NueralNet(function='Sigmoid', iterations=200,
-     layer_struct=[41, 29, 20, 22, 18, 20, 20]))])
-

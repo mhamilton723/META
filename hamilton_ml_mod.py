@@ -232,39 +232,57 @@ def addstring(dict_list, string):
 			dict[new_key] = dict.pop(old_key)
 	return dict_list
 
-def cv_aggregator(clf,X,Y,test_size=.4,n_iters=5):
-	long_res_train=np.array([])
-	long_res_test=np.array([])
-	long_train=np.array([])
-	long_test=np.array([])
+def fit_list(reg_list,X_train,Y_train,X_test,Y_test):
+	Y_actual_train_l = []
+	Y_actual_test_l  = []
+	Y_pred_train_l   = []
+	Y_pred_test_l    = []
+
+	for reg in reg_list:
+		reg.fit(X_train,Y_train)
+		Y_actual_train_l.append(Y_train)
+		Y_actual_test_l.append(Y_test)
+		Y_pred_train_l.append(reg.predict(X_train))
+		Y_pred_test_l.append(reg.predict(X_test))
+	
+	return(Y_actual_train_l,Y_actual_test_l,Y_pred_train_l,Y_pred_test_l)
+
+def bootstrap_fit(reg,X,Y,test_size=.4,n_iters=5):
+	Y_actual_train= np.array([])
+	Y_actual_test = np.array([])
+	Y_pred_train  = np.array([])
+	Y_pred_test   = np.array([])
+	
 	for i in range(n_iters):
 		X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=test_size)
 		
-		#print(X_train.shape,Y_train.shape,clf,i)
-		clf.fit(X_train,Y_train)
+		#print(X_train.shape,Y_train.shape,reg,i)
+		reg.fit(X_train,Y_train)
 		try:
-			long_res_train=np.concatenate((long_res_train,clf.predict(X_train)))
-			long_res_test=np.concatenate((long_res_test,clf.predict(X_test)))
+			Y_pred_train=np.concatenate((Y_pred_train,reg.predict(X_train)))
+			Y_pred_test=np.concatenate((Y_pred_test,reg.predict(X_test)))
 		except:
-			long_res_train=np.concatenate((long_res_train,clf.predict(X_train)[:,0]))
-			long_res_test=np.concatenate((long_res_test,clf.predict(X_test)[:,0]))
-		long_train=np.concatenate((long_train,Y_train))
-		long_test=np.concatenate((long_test,Y_test))
-	return(long_train,long_res_train,long_test,long_res_test)
+			Y_pred_train=np.concatenate((Y_pred_train,reg.predict(X_train)[:,0]))
+			Y_pred_test=np.concatenate((Y_pred_test,reg.predict(X_test)[:,0]))
+		
+		Y_actual_train=np.concatenate((Y_actual_train,Y_train))
+		Y_actual_test=np.concatenate((Y_actual_test,Y_test))
+	return(Y_actual_train,Y_actual_test,Y_pred_train,Y_pred_test)	
 	
+def bootstrap_fit_list(reg_list,X,Y,test_size=.4,n_iters=5):
+	Y_actual_train_l = []
+	Y_actual_test_l  = []
+	Y_pred_test_l    = []
+	Y_pred_train_l   = []
 	
-def cv_aggregator_list(clf_list,X,Y,test_size=.4,n_iters=5):
-	long_res_trainl=[]
-	long_res_testl=[]
-	long_trainl=[]
-	long_testl=[]
-	for clf in clf_list:
-		(long_train,long_res_train,long_test,long_res_test)=cv_aggregator(clf,X,Y,test_size,n_iters)
-		long_res_trainl.append(long_res_train)
-		long_res_testl.append(long_res_test)
-		long_trainl.append(long_train)
-		long_testl.append(long_test)
-	return(long_trainl,long_res_trainl,long_testl,long_res_testl)
+	for reg in reg_list:
+		(Y_actual_train,Y_actual_test,Y_pred_train,Y_pred_test)=bootstrap_fit(reg,X,Y,test_size,n_iters)
+		Y_actual_train_l.append(Y_actual_train)
+		Y_actual_test_l.append(Y_actual_test)
+		Y_pred_train_l.append(Y_pred_train)
+		Y_pred_test_l.append(Y_pred_test)
+		
+	return(Y_actual_train_l,Y_actual_test_l,Y_pred_test_l,Y_pred_train_l)
 
 def pickler(object,file_name):
 	file = open(file_name, "w")
@@ -277,17 +295,21 @@ def depickler(file_name):
 	file.close()
 	return object
 
-def parser(data_file,features,response_var,parametric_col='None'):
-    all_data = ascii.read(data_file,fill_values=[("", "-99"),("null","-99"),("--","-99"),("999999","-99")])
-    feature_data=all_data[features]
-    X = np.array([feature_data[c] for c in feature_data.columns ])
-    X = np.transpose(X)
-    Y = np.array(all_data[response_var])
+def parser(data_file,feature_file,response_var,parametric_col='None'):
+	with open(feature_file) as f:
+		features = f.readlines()
+	features=map(str.strip, features)
 
-    if parametric_col!='None': 
+	all_data = ascii.read(data_file,fill_values=[("", "-99"),("null","-99"),("--","-99"),("999999","-99")])
+	feature_data=all_data[features]
+	X = np.array([feature_data[c] for c in feature_data.columns ])
+	X = np.transpose(X)
+	Y = np.array(all_data[response_var])
+
+	if parametric_col!='None': 
 		P = np.array(all_data[parametric_col])
 		P = np.transpose(P)    
 		return (X,Y,P)
-    else:
+	else:
 		P = []
 		return(X,Y)
