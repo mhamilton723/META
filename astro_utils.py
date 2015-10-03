@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 def metrics(X, Y):  # return(MSE,eta,sig)
     # MSE calculation
     MSE = ((X - Y) ** 2).mean(axis=0)
