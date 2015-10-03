@@ -1,14 +1,10 @@
 from __future__ import print_function
 import sys
 import numpy as np
-from sklearn.metrics import make_scorer
-from sklearn.pipeline import Pipeline
-
 import matplotlib.pyplot as plt
-
 from sklearn.ensemble import BaggingRegressor
-
 import utils as utils
+import astro_utils as astro_utils
 import algo_parameters as algo_param
 import param as param
 from MetaEstimator import make_meta_pipeline
@@ -17,11 +13,8 @@ reload(utils)
 reload(algo_param)
 reload(param)
 
-
-# create scorer
-sigNMAD = make_scorer(utils.sigmaNMAD, greater_is_better=False)
-
 # TODO Add unlabeled subset functionality
+# TODO Add parallelization
 
 #####################   PERFORM GRID SEARCH    ########################
 if param.optimize_params:
@@ -48,19 +41,13 @@ if param.optimize_params:
     with open(param.verbose_search_log, "w+") as log_verbose, open(param.best_search_log, "w+") as log_best:
 
         # perform grid search
-        print('Performing Grid Search with', pipeline)
-        sys.stdout.flush()
-        print('')
-        # grid = param.search_method(pipeline, parameter_space, cv=param.cv_folds, error_score=np.NaN, scoring=sigNMAD)
-        # grid = algo_param.GridSearchCV(pipeline, parameter_space, cv=param.cv_folds, error_score=np.NaN, scoring=sigNMAD)
-        grid = param.search_method(pipeline, parameter_space, cv=param.cv_folds, error_score=np.NaN)
+        print('Performing Grid Search with', pipeline); sys.stdout.flush()
+        grid = param.search_method(pipeline, parameter_space, cv=param.cv_folds, error_score=np.NaN,scoring=param.scorer)
         grid.fit(X_train, Y_train)
 
         print("Best parameters set found on development set:")
-        print(grid.best_params_, file=log_best)
-        print(grid.best_params_)
-        print('', file=log_best)
-        print('')
+        print(grid.best_params_, file=log_best); print('', file=log_best)
+        print(grid.best_params_); print('')
 
         for params, mean_score, scores in grid.grid_scores_:
             print("%0.3f (+/-%0.03f) for %r" % (
@@ -115,11 +102,12 @@ if not param.use_ensemble_pickle or not loaded_ensemble_data:
 
         pipe_list = utils.default_pipelines_by_algo(pipeline, parameter_space)
 
-    for pipe in pipe_list:
-        pipe.steps[3] = ('regressor',
-                         BaggingRegressor(pipe.steps[3][1],
-                                          n_estimators=param.n_estimators,
-                                          oob_score=True))
+    if param.n_estimators > 1:
+        for pipe in pipe_list:
+            pipe.steps[3] = ('regressor',
+                             BaggingRegressor(pipe.steps[3][1],
+                                              n_estimators=param.n_estimators,
+                                              oob_score=True))
 
     # If there are no fears of contamination
     # bootstrap for better visualization of errors
@@ -145,8 +133,8 @@ plt.figure(figsize=(23, 10))
 
 for i in range(len(names)):
     plt.subplot(2, len(names), i + 1)
-    utils.astro_plot(Y_actual_train_l[i], Y_pred_train_l[i], names[i] + ' train')
+    astro_utils.astro_plot(Y_actual_train_l[i], Y_pred_train_l[i], names[i] + ' train')
     plt.subplot(2, len(names), len(names) + i + 1)
-    utils.astro_plot(Y_actual_test_l[i], Y_pred_test_l[i],names[i] + ' test')
+    astro_utils.astro_plot(Y_actual_test_l[i], Y_pred_test_l[i],names[i] + ' test')
 plt.savefig(param.ensemble_plots)
 plt.show()

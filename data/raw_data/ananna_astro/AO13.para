@@ -1,0 +1,284 @@
+##############################################################################
+#                CREATION OF LIBRARIES FROM SEDs List                        #
+# $LEPHAREDIR/source/sedtolib -t (S/Q/G) -c $LEPHAREDIR/config/zphot.para    #
+# help : $LEPHAREDIR/source/sedtolib -h (or -help)                           #
+##############################################################################
+#
+#------      STELLAR LIBRARY (ASCII SEDs)
+STAR_SED        $LEPHAREDIR/sed/STAR/STAR_MOD_ALL.list      # STAR list (full path)
+STAR_FSCALE     3.432E-09                               # Arbitrary Flux Scale
+STAR_LIB        LIB_STAR                                # Bin. STAR LIBRARY ->
+                                                        # $LEPHAREWORK/lib_bin
+#
+#------      QSO LIBRARY (ASCII SEDs)
+QSO_SED         $LEPHAREDIR/sed/QSO/QSO_MOD.list        # QSO list (full path)
+QSO_FSCALE      1                                       # Arbitrary Flux Scale
+#QSO_SED         $LEPHAREDIR/sed/QSO/MARA23032010/best_MAR2010        # QSO list (full path)
+#QSO_FSCALE      1                                       # Arbitrary Flux Scale
+
+QSO_LIB         LIB_QSO                                 # Bin. QSO LIBRARY ->
+                                                        # $LEPHAREWORK/lib_bin
+#
+#------      GALAXY LIBRARY (ASCII or BINARY SEDs)
+GAL_SED    $LEPHAREDIR/sed/GAL/MARA23032010/best_MAR2010 # GAL list (full path)
+#GAL_SED    $LEPHAREDIR/sed/GAL/COSMOS_FINAL/COSMOS_SED.list  # GAL list (full path)
+#GAL_SED    $LEPHAREDIR/sed/GAL/MARA060807/best_paper_jun24
+GAL_FSCALE      1.                                      # Arbitrary Flux Scale
+GAL_LIB         LIBOI_GAL                                # Bin. GAL LIBRARY ->
+                                                        # $LEPHAREWORK/lib_bin
+#SEL_AGE   $LEPHAREDIR/sed/GAL/HYPERZ/AGE_GISSEL_ALL.dat # Age list(full path)
+                                                        # (def=NONE)
+AGE_RANGE  0.,14.e9                                     # Age Min-Max in yr
+
+#############################################################################
+#                           FILTERS                                         #
+#  $LEPHAREDIR/source/filter  -c $LEPHAREDIR/config/zphot.para              #
+#  help: $LEPHAREDIR/source/filter  -h (or -help)                           #
+#############################################################################
+#  Filter number and context
+#   f300 f450 f606 f814 J  H  K
+#   1    2    3    4    5  6  7
+#   1    2    4    8   16  32 64 = 127
+
+#filtri lowres usati da Olivier
+FILTER_LIST  stripe_82/galex_NUV.pb,stripe_82/galex_FUV.pb,stripe_82/SDSS_u.res,stripe_82/SDSS_g.res,stripe_82/SDSS_r.res,stripe_82/SDSS_i.res,stripe_82/SDSS_z.res,stripe_82/ukidss_Y_new.pb,stripe_82/ukidss_J1_new.pb,stripe_82/ukidss_H_new.pb,stripe_82/ukidss_K_new.pb,stripe_82/VISTA_Y.dat,stripe_82/VISTA_J.dat,stripe_82/VISTA_H.dat,stripe_82/VISTA_Ks.dat,stripe_82/2mass_J.pb,stripe_82/2mass_H.pb,stripe_82/2mass_K.pb,stripe_82/wise_w1.pb,stripe_82/wise_w2.pb,stripe_82/wise_w3.pb,stripe_82/wise_w4.pb  # (in $LEPHAREDIR/filt/stripe_82/*)
+
+FILTER_FILE   stripe_82_filter_total_new_filt.dat      # name of file with filters (-> $LEPHAREDIR/filt/stripe_82/)
+TRANS_TYPE      1                       # TRANSMISSION TYPE
+                                        # 0[-def]: Energy, 1: Nb of photons
+FILTER_CALIB    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
+#FILTER_CALIB     0
+                                        # 0[-def]:  fnu=ctt
+                                        # 1      :  nu.fnu=ctt
+                                        # 2      :  fnu=nu
+                                        # 3      :  fnu=Black Body @ T=10000K
+                                        # 4      :  for MIPS (leff with nu fnu=ctt and flux with BB @ 10000K 
+#
+##############################################################################################
+###########                THEORETICAL  MAGNITUDES                               #############
+########### Run : $LEPHAREDIR/source/mag_star -c SCOSMOS_new.para              (star only)     #######
+########### Run : $LEPHAREDIR/source/mag_gal  -t (Q or G) -c SCOSMOS_new.para  (Gal. & QSO)    #######
+##############################################################################################
+#
+#-------------------      From STELLAR LIBRARY           ------------------------------  
+STAR_LIB_IN  LIB_STAR  # Input  STELLAR LIBRARY (in $LEPHAREWORK/lib_bin/*) 
+STAR_LIB_OUT  STAR_SCOSMOS # Output STELLAR MAGN.   (-> $LEPHAREWORK/lib_mag/*)  
+#
+#-------------------      From QSO LIBRARY               ------------------------------
+QSO_LIB_IN  LIB_QSO    # Input  QSO LIBRARY     (in $LEPHAREWORK/lib_bin/*)
+QSO_LIB_OUT  QSO_SCOSMOS  # Output QSO MAGN.       (-> $LEPHAREWORK/lib_mag/*)
+#
+#-------------------      From GALAXY LIBRARY            ------------------------------
+GAL_LIB_IN  LIBOI_GAL           # Input GALAXY LIBRARY   (in $LEPHAREWORK/lib_bin/*)
+GAL_LIB_OUT  GALOI_SCOSMOS  # Output GALAXY LIBRARY  (-> $LEPHAREWORK/lib_mag/*) 
+#
+#------------------   MAG + Z_STEP + COSMO + EXTINCTION   -----------------------------
+MAGTYPE         AB    # Magnitude type (AB or VEGA)
+Z_STEP   0.01,7,0.02   # dz, zmax, dz   (if zmax>8) 
+#Z_STEP   0.01,6,0.02   # dz, zmax, dz   (if zmax>8)
+COSMOLOGY  70,0.3,0.7  # H0,om0,lbd0    (if lb0>0->om0+lbd0=1)
+
+
+#EXTINC_LAW  SMC_prevot.dat,SB_calzetti.dat,SB_calzetti_bump1.dat,SB_calzetti_bump2.dat
+#MOD_EXTINC  13,23,23,31,23,31,23,31
+#EB_V         0.000,0.100,0.200,0.300,0.400,0.500
+
+
+EXTINC_LAW      SMC_prevot.dat # ext. law (in  $LEPHAREDIR/ext/*)
+MOD_EXTINC      1,30            # model range for extinction
+EB_V            0.,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4 # E(B-V) (<50 values)
+
+
+#EXTINC_LAW      SB_calzetti.dat  # ext. law (in  $LEPHAREDIR/ext/*)
+#MOD_EXTINC      1,30            # model range for extinction
+#EB_V            0.,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4 # E(B-V) (<50 values)
+
+
+
+EM_LINES       YES 
+EM_RANGE      1,31 
+
+##Z_FORM   8,6,4,3   # Zformation for each SED
+#
+#------------------     ASCII OUTPUT FILES OPTION       -------------------------------
+LIB_ASCII       YES    # Writing Output in ASCII file (-> working directory)
+#
+##############################################################################################
+#              PHOTOMETRIC REDSHIFTS                                       #
+# $LEPHAREDIR/source/zphot -c $LEPHAREDIR/config/zphot.para                #
+# help: $LEPHAREDIR/source/zphot -h (or -help)                             #
+##############################################################################################
+#
+#------------------    Input Catalog Informations       -------------------------------  
+CAT_IN     bidon            # Input catalog   (full path) 
+INP_TYPE  M     # Input type      (F:Flux or M:MAG)
+CAT_FMT         MEME             # MEME: (Mag,Err)i
+                                 # MMEE: (Mag)i,(Err)i
+CAT_LINES      -99,-99           #  MIN and MAX RANGE of ROWS used in input cat [def:-99,-99]
+CAT_MAG         AB               # Input Magnitude (AB or VEGA)
+CAT_TYPE  LONG       # Input Format    (LONG,SHORT-def)
+#-----------------------------------------------------------------------
+#   FITTING PROCEDURE KEYWORDS
+#---------------------------------------------------------------------
+
+BD_SCALE  0     # Bands used for scaling (Sum 2^n; n=0->nbd-1, 0->all bands) 
+GLB_CONTEXT  -1     # Overwrite Context (Sum 2^n; n=0->nbd-1, 0->all bands, -1[-def] used context per object) 
+FORB_CONTEXT  -1     # To remove the indicated filter
+
+CHI2_RM_BD  40,2
+
+#-----------------------------------
+#  error adjustments
+#-----------------------------------------
+
+#latest version of Olivier
+#ERR_SCALE   0.01,0.05,0.01,0.01,0.01,0.01,0.01,0.1,0.1,0.1,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.1,0.1,0.2,0.2,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.3,0.1  # Systematic errors per band
+
+#OI
+#ERR_SCALE  0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.1,0.05,0.05,0.05,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.05,0.1,0.3,0.3,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.3,0.1 
+
+#mara
+#ERR_SCALE   0.01,0.1,0.01,0.01,0.01,0.01,0.01,0.1,0.1,0.1,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.1,0.1,0.3,0.3,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.3,0.1  # Systematic errors per band
+
+#as XMM
+#ERR_SCALE 0.01,0.1,0.01,0.01,0.01,0.01,0.01,0.1,0.1,0.4,0.1,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.3,0.2,0.2,0.3,0.3,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.3,0.1 # Systematic errors per band
+
+#ERR_SCALE 0.3,0.3,0.02,0.02,0.02,0.02,0.02,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.3,0.3,0.3,0.4 # Systematic errors per band (for 19 filters)
+ERR_SCALE 0.2,0.3,0.02,0.02,0.02,0.02,0.02,0.05,0.05,0.05,0.05,0.04,0.04,0.04,0.04,,0.05,0.05,0.05,0.3,0.3,0.3,0.3 
+ERR_FACTOR      1.5
+
+#----------------------------
+# emission lines
+#---------------------------
+ADD_EMLINES       YES
+
+#------------------    Theoretical libraries           --------------------------------
+ZPHOTLIB  GALOI_SCOSMOS,STAR_SCOSMOS  # Library used for Chi2 (max:3)
+#
+#------------------     Output catalog Name           ---------------------------------
+CAT_OUT    zphot.out   # Output catalog  (-> working directory) 
+PARA_OUT        output.para     # Ouput parameters (full path) 
+#
+#################           PHOTOMETRIC REDSHIFTS OPTIONS    
+#
+###------------------- FIR LIBRARY
+FIR_LIB         NONE
+FIR_LMIN        7.0           # Lambda Min (micron) for FIR analysis
+FIR_CONT        -1
+FIR_SCALE       -1
+FIR_FREESCALE    YES             # ALLOW FOR FREE SCALING
+FIR_SUBSTELLAR   NO
+# PHYSICAL LIBRARY with Stochastic models from  BC07
+PHYS_LIB      NONE
+PHYS_CONT    -1
+PHYS_SCALE   -1
+PHYS_NMAX     100000
+
+###------------------      Priors                       ---------------------------------
+Z_RANGE       0.025,7          # Z min-max used for the Galaxy library
+EBV_RANGE     0,0.5               # E(B-V) MIN-MAX RANGE of E(B-V) used
+# NZ_PRIOR     4,2,4                # I Band for prior on N(z)
+#MASS_SCALE    6.,16.          # Lg(Scaling) min,max [0,0-def]
+#MAG_ABS       -24,-8          # Mabs_min , Mabs_max [0,0-def]
+MAG_REF       4               # Reference number for band used by Mag_abs
+#ZFORM_MIN     1,5,5,5,5,5,3,1 # Min. Zformation per SED -> Age constraint
+
+#
+#------------------  Fixed Z   (need format LONG for input Cat)  ----------------------
+ZFIX  NO    # fixed z and search best model  [YES,NO-def]
+#
+#------------------  Parabolic interpolation for Zbest     ----------------------------
+Z_INTERP    YES    # redshift interpolation 
+#
+#------------------  Normalized ML(exp-(0.5*Chi^2)) curve analysis  -------------------
+#-------               Secondary peak analysis 
+DZ_WIN       0.25             # Window search for 2nd peaks   [0->5; 0.25-def]
+MIN_THRES     0.05             # Lower theshold for 2nd peaks  [0->1; 0.1-def]
+
+#
+#-------             Probability (in %) per redshift intervals     -------------------- 
+#PROB_INTZ      0.01,0.1,0.1,0.2,0.2,0.3,0.3,0.4,0.4,0.5,0.5,0.6,0.6,0.7,0.7,0.8,0.8,0.9,0.9,1.,1.,1.1,1.1,1.3,1.3,1.5,1.5,2.,2.,3.,3.,4.,4.,5   # (even number) 
+
+#-------             Fit the PDFz with minuit    --------------------             
+FIT_PDFz  NO           
+
+
+#########   ABSOLUTE MAGNITUDES COMPUTATION   ###########
+#
+MABS_METHOD  1     # 0[-def] : obs->Ref
+                                 # 1 : best  obs->Ref
+                                 # 2 : fixed obs->Ref
+                                 # 3 : mag from best SED
+                                 # 4 : Zbin
+MABS_CONTEXT    -1               # CONTEXT for Band used for MABS
+
+MABS_REF  4   # 0[-def]: filter obs chosen for Mabs :
+         # ONLY USED IF MABS_METHOD=2
+
+MABS_FILT       1,2,3,4      # Chosen filters per redshift bin (MABS_ZBIN)
+         # ONLY USED IF MABS_METHOD=4 
+
+
+MABS_ZBIN       0,0.5,1,1.5,2,3,3.5,4 # Redshift bins (even number) 
+         # ONLY USED IF MABS_METHOD=4
+ 
+
+#MABS_CONTEXT     8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,8388729,524288,1048576,2097152,4194304,524288,8388608,33554489  #  uBVgriz(1-> 7) K(8) i(9)i(11) Intermediate bands (12->19) => ugriz K(capak 24)    8388729 and I1(20)  => I1     524288   and I2(21)  => I2     1048576  and I3(22)  => I3     2097152  and I4(23)  => I4     4194304 and K(24)  => I1 aper2   524288   and J(25)   => K(capak 24)  8388608  and NUV(26) => NUV, ugri 33554489
+
+
+#########   MAGNITUDE SHIFTS applied to libraries   ######
+#
+# APPLY_SYSSHIFT  0.             # Apply systematic shifts in each band
+                                 # used only if number of shifts matches
+                                 # with number of filters in the library
+#from Olivier Jul 2010
+#APPLY_SYSSHIFT 0.428,0.378,-0.042,-0.009,0.044,-0.062,-0.086,0.471,0.531,0.531,0.312,0.200,0.362,0.173,0.180,-0.374,-0.642,0.000,0.000
+#APPLY_SYSSHIFT 0.308,-0.049,0.390,0.044,0.008,-0.053,-0.101,0.439,0.448,0.000,0.342,0.326,0.00,0.00,0.00,0.193,0.106,0.00,0.00
+#
+#------------------       ADAPTIVE METHOD        -----------------------
+#
+AUTO_ADAPT  NO                    # Adapting method with spectro
+ADAPT_BAND  4,5,7                 # Reference band, band1, band2 for color
+ADAPT_LIM  17.5,22.5                  # Mag limit for spectro  in Ref band
+#ADAPT_POLY   1                       # Number of coef in  polynom (max=4) [1-def]
+#ADAPT_METH   1                       # Fit as a function of
+                                        # 1 : Color Model  [-def]
+                                        # 2 : Obs. color
+                                        # 3 : Restframe colors
+                                        # 4 : Redshift
+                                        # 5 : Models
+                                        # 6 : Magnitudes (Ref band)
+ADAPT_CONTEXT  -1                       # Context to define bands allowed for training [-1-Def]
+ADAPT_ZBIN     0.2,5                   # Redshift range of objects used in the training [0.001,6-Def]
+#
+ADAPT_MODBIN    0,2000
+ERROR_ADAPT     NO                      # [YES,NO-def]
+                                        # Add error in quadrature according to
+                                        # the difference between observed
+                                        # and predicted apparent magnitudes
+
+APPLY_ZMAX  NO 
+
+
+#------------------  OUTPUT SPECTRA                      ------------------------------
+SPEC_OUT    NO    # spectrum of each object?         [YES,NO-def] 
+CHI2_OUT    NO          # output file with all values : z,mod,chi2,E(B-V),...
+                        # BE CAREFUL can take a lot of space !!
+# 
+
+#########  OUTPUT PDZ ANALYSIS
+#PDZ_OUT                     # pdz output file name [def-NONE]
+                                 # add automatically PDZ_OUT[.pdz/.mabsx/.mod/.zph]
+#PDZ_MABS_FILT   2,10,14           # MABS for REF FILTERS to be extracted
+#
+
+#------------------  FAST MODE : Reduzing libraries in color-space     ----------------
+FAST_MODE  NO     # Fast computation                 [NO-def] 
+COL_NUM    3    # Number of colors used            [3-def]
+COL_SIGMA  3    # Enlarge of the obs. color-errors [3-def]
+COL_SEL    AND    # Combination between used colors  [AND/OR-def]
+
+
+
+
+

@@ -1,0 +1,3 @@
+{'regressor__algorithm': KernelRidge(alpha=0.1, coef0=1, degree=3, gamma=0.01, kernel='rbf',
+      kernel_params=None), 'dim_reducer__n_components': 15, 'imputer__algorithm': Imputer(axis=0, copy=True, missing_values=-99, strategy='mean', verbose=0), 'imputer__strategy': 'mean', 'dim_reducer__whiten': True, 'dim_reducer__copy': True, 'imputer__missing_values': -99, 'scaler__algorithm': StandardScaler(copy=True, with_mean=True, with_std=True), 'regressor__alpha': 0.1, 'regressor__gamma': 0.01, 'regressor__kernel': 'rbf', 'dim_reducer__algorithm': PCA(copy=True, n_components=15, whiten=True)}
+

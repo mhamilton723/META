@@ -1,5 +1,7 @@
 import algo_parameters as algo_param
 from sklearn.grid_search import GridSearchCV
+from sklearn.metrics import make_scorer
+from astro_utils import sigmaNMAD
 
 ########################### DATASET PARAMETERS ###########################
 
@@ -14,6 +16,7 @@ data_file="data/raw_data/hamilton_astro/S82A_zphot_fix_sdss_galex_ukidss_wise_AB
 feature_file = "data/raw_data/hamilton_astro/astro_features_1.txt"
 response_var = 'z_spec'  # Specify the response variable name
 parametric_col = 'None'  # Specify a column of precomputed parametric data
+scorer = make_scorer(sigmaNMAD, greater_is_better=False)
 
 ###### Sub-sampling parameters, use to limit computation time for rapid development
 labeled_subsample = 10000  # Size of labelled training and testing set
@@ -50,7 +53,7 @@ regressor_params = algo_param.RF_params + algo_param.KR_params + algo_param.SV_p
 ########################### OPTIMIZING META PARAMETERS ###########################
 
 #### Search Parameters
-optimize_params = False  # Boolean to specify whether to optimize the marked parameters above
+optimize_params = True  # Boolean to specify whether to optimize the marked parameters above
 search_method = GridSearchCV  # Algorithm to perform meta-parameter optimization
 test_size = .3  # the size of the test set relative to the training set
 cv_folds = 5  # Number of times to try each setting of the parameters
@@ -70,7 +73,7 @@ optimization_data_pickle = 'data/intermediate_data/optimization_data_pickle.pkl'
 
 using_grid_search_data = True
 
-n_estimators = 5  # The number of estimators used in a bagging regression. 1 corresponds to no bagging.
+n_estimators = 10  # The number of estimators used in a bagging regression. 1 corresponds to no bagging.
 n_iterations = 1  # Used for estimating uncertainties. Beware of information leakage between datasets
 
 ensemble_pickle = 'results/ensemble_pickle.pkl'  # File to save pickled results
@@ -78,7 +81,7 @@ ensemble_pickle = 'results/ensemble_pickle.pkl'  # File to save pickled results
 
 ########################### PLOTTING RESULTS ###############################
 
-use_ensemble_pickle = True
+use_ensemble_pickle = False
 ensemble_plots = 'results/ensemble_plots.png'  # file to save plots
 
 print('Metaparameters Read')
