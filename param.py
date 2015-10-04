@@ -6,15 +6,15 @@ from astro_utils import sigmaNMAD
 ########################### DATASET PARAMETERS ###########################
 
 ###### Dataset to use, can be a mix of labelled and unlabelled data
-# data_file = "data/raw_data/ananna_astro/AO13_Galex_Wise_2mass_point_ukidss_final_match_28.txt"
-data_file="data/raw_data/hamilton_astro/S82A_zphot_fix_sdss_galex_ukidss_wise_AB_ext.csv"
+data_file = "data/raw_data/ananna_astro/AO13_Galex_Wise_2mass_point_ukidss_final_match_28.txt"
+#data_file="data/raw_data/hamilton_astro/S82A_zphot_fix_sdss_galex_ukidss_wise_AB_ext.csv"
 # data_file="data/S82A_sdss_galex_ukidss_wise_AB_ext.txt"
 # data_file="raw_data/sdssfix_galex_ukidss_wise_aper_AB_ext.csv"
 
 ###### Parameters for specifying files feature names
-# feature_file = "data/raw_data/ananna_astro/astro_features_2.txt"  # Specify a file containing the variable names in the dataset
-feature_file = "data/raw_data/hamilton_astro/astro_features_1.txt"
-response_var = 'z_spec'  # Specify the response variable name
+feature_file = "data/raw_data/ananna_astro/astro_features_2.txt"  # Specify a file containing the variable names in the dataset
+#feature_file = "data/raw_data/hamilton_astro/astro_features_1.txt"
+response_var = 'redshift'  # Specify the response variable name
 parametric_col = 'None'  # Specify a column of precomputed parametric data
 scorer = make_scorer(sigmaNMAD, greater_is_better=False)
 
@@ -43,7 +43,7 @@ scaler_params = algo_param.SC_params
 ####DIMENSIONALITY REDUCTION / UNSUPERVISED LEARNING
 reduce_dim = True
 optimize_dim_reduce = True
-dim_reducer_params = algo_param.PCA_params
+dim_reducer_params = algo_param.PCA_params2
 
 ####SUPERVISED REGRESSION 
 optimize_regression = True

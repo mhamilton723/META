@@ -15,6 +15,8 @@ SC_params = {'algorithm': [StandardScaler()]}
 # dim_reduce_params={'n_components': [1,2,5,10,15], 'whiten':[True,False]}
 PCA_params = {'algorithm': [PCA()], 'copy': [True], 'n_components': [10, 15], 'whiten': [True]}
 
+PCA_params2 = {'algorithm': [PCA()], 'copy': [True], 'n_components': [10, 15, 21], 'whiten': [True]}
+
 KR_params = [
     {'algorithm': [KernelRidge()], 'kernel': ['rbf'], 'gamma': [1e-2, 1e-3, 1e-4, 1e-5], 'alpha': [.1, 1, 10]},
     {'algorithm': [KernelRidge()], 'kernel': ['poly'], 'degree': [2, 3, 4], 'coef0': [0, 1]},
