@@ -42,7 +42,9 @@ if param.optimize_params:
 
         # perform grid search
         print('Performing Grid Search with', pipeline); sys.stdout.flush()
-        grid = param.search_method(pipeline, parameter_space, cv=param.cv_folds, error_score=np.NaN,scoring=param.scorer)
+        grid = param.search_method(pipeline, parameter_space,
+                                   cv=param.cv_folds, error_score=np.NaN,
+                                   scoring=param.scorer, n_jobs=param.number_of_cores)
         grid.fit(X_train, Y_train)
 
         print("Best parameters set found on development set:")
@@ -107,7 +109,7 @@ if not param.use_ensemble_pickle or not loaded_ensemble_data:
             pipe.steps[3] = ('regressor',
                              BaggingRegressor(pipe.steps[3][1],
                                               n_estimators=param.n_estimators,
-                                              oob_score=True))
+                                              oob_score=True, n_jobs=param.number_of_cores))
 
     # If there are no fears of contamination
     # bootstrap for better visualization of errors

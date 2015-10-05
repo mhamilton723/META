@@ -23,6 +23,8 @@ labeled_subsample = 10000  # Size of labelled training and testing set
 unlabeled_subsample = 10000  # Size of unlabelled training
 
 
+number_of_cores = 1
+
 ###########################################################################################################
 #  Note: to adjust the settings for the regressors do this directly in the "algo_parameters.py" file      #
 #        This file contains grid search ranges, and regressors                                            #
