@@ -3,6 +3,7 @@ from __future__ import print_function
 import param as param
 import algo_parameters as algo_param
 import utils as utils
+import numpy as np
 
 from sklearn.base import BaseEstimator, RegressorMixin, TransformerMixin, clone
 from sklearn.pipeline import Pipeline
@@ -97,8 +98,74 @@ class MetaTransformer(MetaEstimator):
         return self.algorithm.inverse_transform(X, copy)
 
 
+class UnsupervisedPipeline(Pipeline):
+    def __init__(self, steps, all_X=None, all_Y=None):
+        super(UnsupervisedPipeline, self).__init__(steps)
+        self.all_X = all_X
+        self.all_Y = all_Y
 
-def make_meta_pipeline(labeled_param_spaces):
+    def fit(self, X, y=None, **fit_params):
+        """Fit all the transforms one after the other and transform the
+        data, then fit the transformed data using the final estimator.
+
+        Parameters
+        ----------
+        X : iterable
+            Training data. Must fulfill input requirements of first step of the
+            pipeline.
+        y : iterable, default=None
+            Training targets. Must fulfill label requirements for all steps of
+            the pipeline.
+        """
+
+        if self.all_X is not None:
+            #print("Good")
+            Xt, fit_params = self._pre_transform(self.all_X, self.all_Y, **fit_params)
+            Xt, fit_params = self._transform(X)
+        else:
+            #print("Bad")
+            Xt, fit_params = self._pre_transform(X, y, **fit_params)
+
+        self.steps[-1][-1].fit(Xt, y, **fit_params)
+        return self
+
+
+
+    def _transform(self, X, y=None, **fit_params):
+        fit_params_steps = dict((step, {}) for step, _ in self.steps)
+        for pname, pval in fit_params.iteritems():
+            step, param = pname.split('__', 1)
+            fit_params_steps[step][param] = pval
+        Xt = X
+        for name, transform in self.steps[:-1]:
+            Xt = transform.transform(Xt)
+        return Xt, fit_params_steps[self.steps[-1][0]]
+
+
+    def _reconstitute_y(self,X,Y,all_X):
+        all_Y = []
+        fill = np.nan
+        count = 0
+        for x, y in zip(X, Y):
+            while np.any(all_X[count, :] != x):
+                all_Y.append(fill)
+                count += 1
+                if count >= 2860:
+                    print('here')
+            all_Y.append(y)
+            count += 1
+            if count >= 2860:
+                print('here')
+
+        if count < len(all_X):
+            all_Y += [fill]*(len(all_X)-count)
+        return all_Y
+
+
+
+
+
+def make_meta_pipeline(labeled_param_spaces,all_X = None, all_Y=None):
     components = []
     pipeline_param_spaces = []
 
@@ -130,6 +197,6 @@ def make_meta_pipeline(labeled_param_spaces):
 
 
     output_parameter_space = utils.combine_parameter_spaces(pipeline_param_spaces)
-    pipeline = Pipeline(components)
+    pipeline = UnsupervisedPipeline(components, all_X,all_Y)
 
     return pipeline, output_parameter_space

@@ -4,16 +4,18 @@ from astropy.io import ascii
 import numpy as np
 import pickle
 from sklearn import clone
-
+from itertools import islice
 from sklearn.cross_validation import train_test_split
 
 
-def parse(data_file, feature_file, response_var, parametric_var=None):
+def parse(data_file, feature_file, response_var, parametric_var=None, debug_limit=None):
     with open(feature_file) as f:
         features = f.readlines()
     features = map(str.strip, features)
 
-    data = ascii.read(data_file, fill_values=[("", "-99"), ("null", "-99"), ("--", "-99"), ("999999", "-99")])
+    data = ascii.read(data_file,
+                      fill_values=[("", "-99"), ("null", "-99"), ("--", "-99"), ("999999", "-99")],
+                      data_end=debug_limit)
 
     X = np.array([data[f] for f in features])
     X = np.transpose(X)

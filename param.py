@@ -14,14 +14,15 @@ data_file = "data/raw_data/ananna_astro/AO13_Galex_Wise_2mass_point_ukidss_final
 ###### Parameters for specifying files feature names
 feature_file = "data/raw_data/ananna_astro/astro_features_2.txt"  # Specify a file containing the variable names in the dataset
 #feature_file = "data/raw_data/hamilton_astro/astro_features_1.txt"
+#response_var = 'z_spec'  # Specify the response variable name
 response_var = 'redshift'  # Specify the response variable name
 parametric_col = 'None'  # Specify a column of precomputed parametric data
-scorer = make_scorer(sigmaNMAD, greater_is_better=False)
+scorer = make_scorer(sigmaNMAD, greater_is_better=False)  # TODO incorporate scoring into main.py
 
 ###### Sub-sampling parameters, use to limit computation time for rapid development
 labeled_subsample = 10000  # Size of labelled training and testing set
 unlabeled_subsample = 10000  # Size of unlabelled training
-
+debug_limit = None # number of lines of file to read in, useful for debugging speed
 
 number_of_cores = 1
 
@@ -49,7 +50,7 @@ dim_reducer_params = algo_param.PCA_params2
 
 ####SUPERVISED REGRESSION 
 optimize_regression = True
-regressor_params = algo_param.RF_params + algo_param.KR_params + algo_param.SV_params
+regressor_params = algo_param.RF_params + algo_param.KR_params# + algo_param.SV_params
 
 
 ########################### OPTIMIZING META PARAMETERS ###########################
@@ -58,7 +59,7 @@ regressor_params = algo_param.RF_params + algo_param.KR_params + algo_param.SV_p
 optimize_params = True  # Boolean to specify whether to optimize the marked parameters above
 search_method = GridSearchCV  # Algorithm to perform meta-parameter optimization
 test_size = .3  # the size of the test set relative to the training set
-cv_folds = 5  # Number of times to try each setting of the parameters
+cv_folds = 2  # Number of times to try each setting of the parameters
 
 #### Search output files
 verbose_search_log = 'results/verbose_search_log.txt'  # log file to holds all the results of the optimization
