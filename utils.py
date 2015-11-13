@@ -120,14 +120,17 @@ def best_pipelines_by_algo(grid, algo_tag = 'regressor__algorithm', bigger_is_be
     return results
 
 
-def default_pipelines_by_algo(estimator, meta_parameter_space):
+def default_pipelines_by_algo(estimator, meta_parameter_space, needed_params=None):
     results = []
-    for param_space in meta_parameter_space:
-        algo_dict = {'imputer__algorithm': param_space['imputer__algorithm'],
-                     'scaler__algorithm': param_space['scaler__algorithm'],
-                     'dim_reducer__algorithm': param_space['dim_reducer__algorithm'],
-                     'regressor__algorithm': param_space['regressor__algorithm']}
 
+    for param_space in meta_parameter_space:
+        algo_dict = {'imputer__base_algorithm': param_space['imputer__base_algorithm'][0],
+                     'scaler__base_algorithm': param_space['scaler__base_algorithm'][0],
+                     'dim_reducer__base_algorithm': param_space['dim_reducer__base_algorithm'][0],
+                     'regressor__base_algorithm': param_space['regressor__base_algorithm'][0]}
+
+        if needed_params:
+            algo_dict.update(needed_params)
         if algo_dict not in results:
             new_estimator = clone(estimator)
             new_estimator.set_params(**algo_dict)
@@ -235,7 +238,7 @@ def bootstrap_fit_list(reg_list, X, Y, test_size=.4, n_iters=5):
         Y_pred_train_l.append(Y_pred_train)
         Y_pred_test_l.append(Y_pred_test)
 
-    return (Y_actual_train_l, Y_actual_test_l, Y_pred_test_l, Y_pred_train_l)
+    return (Y_actual_train_l, Y_actual_test_l, Y_pred_train_l, Y_pred_test_l)
 
 
 def pickler(object, file_name):

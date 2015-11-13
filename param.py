@@ -22,7 +22,7 @@ scorer = make_scorer(sigmaNMAD, greater_is_better=False)  # TODO incorporate sco
 ###### Sub-sampling parameters, use to limit computation time for rapid development
 labeled_subsample = 10000  # Size of labelled training and testing set
 unlabeled_subsample = 10000  # Size of unlabelled training
-debug_limit = None # number of lines of file to read in, useful for debugging speed
+debug_limit = 100 # number of lines of file to read in, useful for debugging speed
 
 number_of_cores = 1
 
@@ -47,16 +47,17 @@ scaler_params = algo_param.SC_params
 reduce_dim = True
 optimize_dim_reduce = True
 dim_reducer_params = algo_param.PCA_params2
+#dim_reducer_params = algo_param.AE_params
 
 ####SUPERVISED REGRESSION 
 optimize_regression = True
-regressor_params = algo_param.RF_params + algo_param.KR_params# + algo_param.SV_params
+regressor_params = algo_param.RF_params# + algo_param.KR_params + algo_param.SV_params
 
 
 ########################### OPTIMIZING META PARAMETERS ###########################
 
 #### Search Parameters
-optimize_params = True  # Boolean to specify whether to optimize the marked parameters above
+optimize_params = False  # Boolean to specify whether to optimize the marked parameters above
 search_method = GridSearchCV  # Algorithm to perform meta-parameter optimization
 test_size = .3  # the size of the test set relative to the training set
 cv_folds = 2  # Number of times to try each setting of the parameters
@@ -74,7 +75,7 @@ optimization_data_pickle = 'data/intermediate_data/optimization_data_pickle.pkl'
 #  Note: If using grid search and bagging please set: using_grid_search_data = True   #
 #######################################################################################
 
-using_grid_search_data = True
+using_grid_search_data = False
 
 n_estimators = 10  # The number of estimators used in a bagging regression. 1 corresponds to no bagging.
 n_iterations = 1  # Used for estimating uncertainties. Beware of information leakage between datasets

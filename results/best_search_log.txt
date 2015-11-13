@@ -1,6 +1,0 @@
-{'regressor__algorithm': RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
-           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
-           min_samples_split=2, min_weight_fraction_leaf=0.0,
-           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
-           verbose=0, warm_start=False), 'dim_reducer__n_components': 21, 'imputer__algorithm': Imputer(axis=0, copy=True, missing_values=-99, strategy='mean', verbose=0), 'imputer__strategy': 'mean', 'dim_reducer__whiten': True, 'dim_reducer__copy': True, 'imputer__missing_values': -99, 'scaler__algorithm': StandardScaler(copy=True, with_mean=True, with_std=True), 'regressor__n_estimators': 10, 'regressor__max_depth': None, 'dim_reducer__algorithm': PCA(copy=True, n_components=21, whiten=True)}
-

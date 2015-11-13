@@ -93,8 +93,10 @@ if not param.use_ensemble_pickle or not loaded_ensemble_data:
     if not param.using_grid_search_data or not loaded_optimization_data:
         print('Not using optimization data: Re-parsing File')
         # parse data
-        all_X, all_Y = utils.parse(param.data_file, param.feature_file, param.response_var)
-        X, Y = utils.subsample((all_X, all_Y), param.labeled_subsample)
+        all_X, all_Y = utils.parse(param.data_file, param.feature_file,
+                                   param.response_var, debug_limit=param.debug_limit)
+        X, Y = utils.labeled_subset(all_X, all_Y)
+        X, Y = utils.subsample((X, Y), param.labeled_subsample)
         X_train, X_test, Y_train, Y_test = utils.train_test_split(X, Y, test_size=param.test_size)
 
         pipeline, parameter_space = make_meta_pipeline([
@@ -104,7 +106,8 @@ if not param.use_ensemble_pickle or not loaded_ensemble_data:
             ('regressor', param.regressor_params)
             ], all_X, all_Y)
 
-        pipe_list = utils.default_pipelines_by_algo(pipeline, parameter_space)
+        pipe_list = utils.default_pipelines_by_algo(pipeline, parameter_space,
+                                                    needed_params={'imputer__missing_values': [-99]})
 
     if param.n_estimators > 1:
         for pipe in pipe_list:
