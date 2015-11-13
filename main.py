@@ -96,7 +96,7 @@ if not param.use_ensemble_pickle or not loaded_ensemble_data:
         all_X, all_Y = utils.parse(param.data_file, param.feature_file,
                                    param.response_var, debug_limit=param.debug_limit)
         X, Y = utils.labeled_subset(all_X, all_Y)
-        X, Y = utils.subsample((X, Y), param.labeled_subsample) 
+        X, Y = utils.subsample((X, Y), param.labeled_subsample)
         X_train, X_test, Y_train, Y_test = utils.train_test_split(X, Y, test_size=param.test_size)
 
         pipeline, parameter_space = make_meta_pipeline([
